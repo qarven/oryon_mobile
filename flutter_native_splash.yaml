@@ -1,0 +1,30 @@
+# Native launch screen. Regenerate the platform resources after editing with
+# `make gen-splash`, or restore Flutter's default with
+# `dart run flutter_native_splash:remove`.
+flutter_native_splash:
+  android: true
+  ios: true
+  web: false
+
+  # Brand primary, the same color the app paints its primary surfaces with.
+  color: "#C96442"
+  color_dark: "#C96442"
+
+  # The source is a 1152px canvas with the logo at 25% so it survives the
+  # Android 12 circle mask below. Output size is density independent
+  # (source_px / 4), so this also keeps the iOS and legacy Android icon at its
+  # current size.
+  image: assets/logo/logo_white_1152.png
+
+  android_screen_orientation: portrait
+  fullscreen: false
+
+  # Android 12+ draws the icon inside a circle and ignores the settings above.
+  # icon_background_color is what shrinks the visible circle to 160dp, so the
+  # logo must stay within the inner 2/3 of the image.
+  android_12:
+    color: "#C96442"
+    color_dark: "#C96442"
+    image: assets/logo/logo_white_1152.png
+    icon_background_color: "#C96442"
+    icon_background_color_dark: "#C96442"

@@ -1,0 +1,30 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Oryon Staging (Flavor)",
+            "type": "dart",
+            "request": "launch",
+            "flutterMode": "debug",
+            "program": "lib/main.dart",
+            "toolArgs": [
+                "--flavor",
+                "staging",
+            ]
+        },
+        {
+            "name": "Oryon Production (Flavor)",
+            "type": "dart",
+            "request": "launch",
+            "flutterMode": "debug",
+            "program": "lib/main.dart",
+            "toolArgs": [
+                "--flavor",
+                "production",
+            ]
+        },
+    ]
+}
