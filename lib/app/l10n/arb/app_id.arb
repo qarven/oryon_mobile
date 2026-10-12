@@ -1,0 +1,184 @@
+{
+  "@@locale": "id",
+  "appTitle": "Oryon",
+  "@appTitle": {
+    "description": "Application name shown in the app bar and launcher"
+  },
+  "made_by": "Saya",
+  "@made_by": {
+    "description": "siapa yang buat aplikasi"
+  },
+  "onboardingTitle1": "Tetap terhubung",
+  "@onboardingTitle1": {
+    "description": "First onboarding slide title"
+  },
+  "onboardingBody1": "Jangkau orang yang Anda kerjakan, di mana pun mereka berada.",
+  "@onboardingBody1": {
+    "description": "First onboarding slide body"
+  },
+  "onboardingTitle2": "Atur hari Anda",
+  "@onboardingTitle2": {
+    "description": "Second onboarding slide title"
+  },
+  "onboardingBody2": "Tugas, catatan, dan pembaruan dalam satu tempat, bukan lima.",
+  "@onboardingBody2": {
+    "description": "Second onboarding slide body"
+  },
+  "onboardingTitle3": "Lanjut dari mana saja",
+  "@onboardingTitle3": {
+    "description": "Third onboarding slide title"
+  },
+  "onboardingBody3": "Setiap perubahan tersinkron secara instan di semua perangkat Anda.",
+  "@onboardingBody3": {
+    "description": "Third onboarding slide body"
+  },
+  "onboardingNext": "Lanjut",
+  "@onboardingNext": {
+    "description": "Advances to the next walkthrough slide"
+  },
+  "onboardingGetStarted": "Mulai",
+  "@onboardingGetStarted": {
+    "description": "Finishes the walkthrough"
+  },
+  "navHome": "Beranda",
+  "@navHome": {
+    "description": "Bottom navigation label of the home tab"
+  },
+  "navFeatureA": "Fitur A",
+  "@navFeatureA": {
+    "description": "Bottom navigation label of the first placeholder feature"
+  },
+  "navFeatureB": "Fitur B",
+  "@navFeatureB": {
+    "description": "Bottom navigation label of the second placeholder feature"
+  },
+  "navAccount": "Akun",
+  "@navAccount": {
+    "description": "Bottom navigation label of the account tab"
+  },
+  "authSignIn": "Masuk",
+  "@authSignIn": {
+    "description": "Title and submit button of the login screen"
+  },
+  "authCreateAccount": "Buat akun",
+  "@authCreateAccount": {
+    "description": "Title and submit button of the register screen"
+  },
+  "authIdentifier": "Email atau nama pengguna",
+  "@authIdentifier": {
+    "description": "Label of the login identifier field"
+  },
+  "authName": "Nama lengkap",
+  "@authName": {
+    "description": "Label of the register name field"
+  },
+  "authEmail": "Email",
+  "@authEmail": {
+    "description": "Label of the email identifier"
+  },
+  "authPhone": "Nomor telepon",
+  "@authPhone": {
+    "description": "Label of the phone identifier"
+  },
+  "authPassword": "Kata sandi",
+  "@authPassword": {
+    "description": "Label of the password field"
+  },
+  "authForgotPassword": "Lupa kata sandi?",
+  "@authForgotPassword": {
+    "description": "Link from the login screen to the reset screen"
+  },
+  "authForgotPasswordTitle": "Atur ulang kata sandi",
+  "@authForgotPasswordTitle": {
+    "description": "Title of the forgot password screen"
+  },
+  "authSendResetCode": "Kirim kode",
+  "@authSendResetCode": {
+    "description": "Submit button of the forgot password screen"
+  },
+  "authResetSent": "Jika akun tersebut ada, kami sudah mengirim kode atur ulang.",
+  "@authResetSent": {
+    "description": "Confirmation shown after a reset code was requested"
+  },
+  "authVerifyTitle": "Verifikasi akun",
+  "@authVerifyTitle": {
+    "description": "Title of the registration verification screen"
+  },
+  "authVerifySubtitle": "Masukkan kode yang kami kirim ke {identifier}",
+  "@authVerifySubtitle": {
+    "description": "Explains where the verification code was sent",
+    "placeholders": {
+      "identifier": {
+        "type": "String"
+      }
+    }
+  },
+  "authCode": "Kode 6 digit",
+  "@authCode": {
+    "description": "Label of the verification code field"
+  },
+  "authVerify": "Verifikasi",
+  "@authVerify": {
+    "description": "Submit button of the verification screen"
+  },
+  "authNoAccount": "Belum punya akun?",
+  "@authNoAccount": {
+    "description": "Prompt above the register link on the login screen"
+  },
+  "authHaveAccount": "Sudah punya akun?",
+  "@authHaveAccount": {
+    "description": "Prompt above the sign in link on the register screen"
+  },
+  "authRequired": "Wajib diisi",
+  "@authRequired": {
+    "description": "Validation message for an empty field"
+  },
+  "authErrorInvalidEmail": "Format email tidak valid",
+  "@authErrorInvalidEmail": {
+    "description": "Validation message for a malformed email"
+  },
+  "authErrorInvalidPhone": "Gunakan format +62xxxxxxxxxx",
+  "@authErrorInvalidPhone": {
+    "description": "Validation message for a phone number that is not E.164"
+  },
+  "authErrorPasswordTooShort": "Kata sandi minimal 8 karakter",
+  "@authErrorPasswordTooShort": {
+    "description": "Validation message for a password under the minimum length"
+  },
+  "authErrorGeneric": "Terjadi kesalahan. Silakan coba lagi.",
+  "@authErrorGeneric": {
+    "description": "Fallback message for an unexpected auth failure"
+  },
+  "authErrorInvalidCredentials": "Email atau kata sandi salah.",
+  "@authErrorInvalidCredentials": {
+    "description": "Message for rejected login credentials"
+  },
+  "authErrorTooManyAttempts": "Terlalu banyak percobaan. Coba lagi nanti.",
+  "@authErrorTooManyAttempts": {
+    "description": "Message for a rate limited or locked out request"
+  },
+  "authErrorNetwork": "Tidak ada koneksi. Periksa jaringan lalu coba lagi.",
+  "@authErrorNetwork": {
+    "description": "Message when the API is unreachable"
+  },
+  "authMfaUnsupported": "Login multi-faktor belum didukung.",
+  "@authMfaUnsupported": {
+    "description": "Message when the account requires MFA, which has no screen yet"
+  },
+  "fieldShowPassword": "Tampilkan kata sandi",
+  "@fieldShowPassword": {
+    "description": "Tooltip of the toggle that reveals a password field"
+  },
+  "fieldHidePassword": "Sembunyikan kata sandi",
+  "@fieldHidePassword": {
+    "description": "Tooltip of the toggle that obscures a password field"
+  },
+  "routeErrorTitle": "Terjadi kesalahan",
+  "@routeErrorTitle": {
+    "description": "Judul halaman yang muncul saat rute tidak dapat ditemukan"
+  },
+  "routeErrorMessage": "Halaman ini tidak tersedia. Kembali ke beranda lalu coba lagi.",
+  "@routeErrorMessage": {
+    "description": "Isi halaman yang muncul saat rute tidak dapat ditemukan"
+  }
+}
