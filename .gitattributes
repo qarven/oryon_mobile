@@ -1,1 +1,14 @@
-* text=auto eol=lf
+# Dart source files
+*.dart text eol=lf
+
+# Flutter and Dart configuration
+*.yaml text eol=lf
+*.json text eol=lf
+*.arb text eol=lf
+
+# Git configuration files
+*.sh text eol=lf
+.gitattributes text eol=lf
+.gitignore text eol=lf
+
+*.md text eol=lf

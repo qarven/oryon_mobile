@@ -8,8 +8,11 @@ import 'package:oryon_mobile/app/theme/theme.dart';
 import 'package:oryon_mobile/core/logging/app_logger.dart';
 import 'package:oryon_mobile/features/auth/module.dart';
 import 'package:oryon_mobile/features/auth/services/auth_session.dart';
+import 'package:oryon_mobile/features/explore/module.dart';
 import 'package:oryon_mobile/features/home/module.dart';
 import 'package:oryon_mobile/features/onboarding/module.dart';
+import 'package:oryon_mobile/features/profile/module.dart';
+import 'package:oryon_mobile/features/team/module.dart';
 import 'package:oryon_mobile/shared/base/base_module.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -26,23 +29,35 @@ Future<void> main() async {
   AppLogger.initialize();
 
   // Initialize persistent storage shared by application features.
+  final ins = GetIt.I;
   final prefs = await SharedPreferences.getInstance();
-  GetIt.instance.registerSingleton<SharedPreferences>(prefs);
 
   // Register and initialize feature modules.
   //
   // Each module is responsible for registering its own dependencies.
   // All modules must be initialized before services that depend on them,
   // such as the application router, are created.
+  //
+  // The bottom navigation tabs are listed separately because the router mounts
+  // their routes as branches of the shell, in this order.
+  final shellTabs = <BaseModule>[
+    HomeModule(),
+    ExploreModule(),
+    TeamModule(),
+    ProfileModule(),
+  ];
+
   final modules = <BaseModule>[
     OnboardingModule(),
     AuthModule(),
-    HomeModule(),
+    ...shellTabs,
   ];
 
   for (final module in modules) {
     module.initialize();
   }
+
+  final router = AppRouter.initialize(modules: modules, shellTabs: shellTabs);
 
   // Restore the previously stored authentication session before launching
   // the application, allowing the router to determine the initial route
@@ -51,7 +66,7 @@ Future<void> main() async {
   // If restoration fails, log the error and continue startup. A failed
   // restoration should not prevent the application from opening.
   try {
-    await GetIt.instance<AuthSession>().restore();
+    await ins<AuthSession>().restore();
   } on Object catch (error, stackTrace) {
     // A session that cannot be read means signed out, not a crash on launch.
     AppLogger.error(
@@ -61,17 +76,15 @@ Future<void> main() async {
     );
   }
 
-  // Register application-wide singleton services.
-  GetIt.instance.registerSingleton<L10nStorage>(L10nStorage(prefs));
-  GetIt.instance.registerSingleton<ThemeStorage>(ThemeStorage(prefs));
-  GetIt.instance.registerSingleton<GoRouter>(AppRouter.initialize(modules));
-  // Register application-wide factory services.
-  GetIt.instance.registerFactory<ThemeCubit>(
-    () => ThemeCubit(GetIt.instance<ThemeStorage>()),
-  );
-  GetIt.instance.registerFactory<L10nCubit>(
-    () => L10nCubit(GetIt.instance<L10nStorage>()),
-  );
+  ins
+    // Register application-wide singleton services.
+    ..registerSingleton<SharedPreferences>(prefs)
+    ..registerSingleton<L10nStorage>(L10nStorage(prefs))
+    ..registerSingleton<ThemeStorage>(ThemeStorage(prefs))
+    ..registerSingleton<GoRouter>(router)
+    // Register application-wide factory services.
+    ..registerFactory<ThemeCubit>(() => ThemeCubit(ins<ThemeStorage>()))
+    ..registerFactory<L10nCubit>(() => L10nCubit(ins<L10nStorage>()));
 
   // Launch the application after startup initialization is complete.
   runApp(const OryonApp());

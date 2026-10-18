@@ -50,7 +50,6 @@ linter:
     - avoid_multiple_declarations_per_line
     - avoid_positional_boolean_parameters
     - avoid_print
-    - avoid_private_typedef_functions
     - avoid_redundant_argument_values
     - avoid_relative_lib_imports
     - avoid_renaming_method_parameters
@@ -125,7 +124,6 @@ linter:
     - null_closures
     - omit_local_variable_types
     - omit_obvious_local_variable_types
-    - one_member_abstracts
     - only_throw_errors
     - overridden_fields
     - package_names
@@ -187,7 +185,6 @@ linter:
     - type_init_formals
     - type_literal_in_constant_pattern
     - unawaited_futures
-    - unnecessary_await_in_return
     - unnecessary_brace_in_string_interps
     - unnecessary_breaks
     - unnecessary_const

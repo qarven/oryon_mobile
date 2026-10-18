@@ -4,68 +4,105 @@ publish_to: "none"
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.12.2
+  # Dart SDK version constraint
+  sdk: ^3.13.7
 
 dependencies:
   # Flutter SDK
   flutter:
     sdk: flutter
-  # Flutter's built-in localization and internationalization support
+
+  # Flutter localization and internationalization support
   flutter_localizations:
     sdk: flutter
-  # Provides the CupertinoIcons font used by the Flutter SDK's Cupertino widgets
+
+  # Cupertino-style icons for iOS-inspired widgets
   cupertino_icons: 2.0.0
+
   # ConnectRPC client for communicating with backend services
-  connectrpc: 2.0.0
+  connectrpc: 2.0.1
+
   # Generated Dart Protobuf models and service definitions
   sdk_protobuf_gen_dart:
     path: protobuf/gen/dart
-  # Generate and manage unique identifiers (UUIDs)
+
+  # Generate universally unique identifiers (UUIDs)
   uuid: 4.6.0
-  # State management using the BLoC pattern
+
+  # State management using the BLoC and Cubit patterns
   flutter_bloc: 9.1.1
-  # Immutable data classes and union types
+
+  # Annotations for generating immutable data classes and union types
   freezed_annotation: 3.1.0
-  # JSON serialization and deserialization annotations
+
+  # Annotations for JSON serialization and deserialization
   json_annotation: 4.12.0
+
   # Service locator for dependency injection
   get_it: 9.3.0
+
   # Declarative routing and navigation between screens
-  go_router: 18.1.0
-  # Secure storage for sensitive data such as tokens and credentials
+  go_router: 18.1.1
+
+  # Secure storage for sensitive data, tokens, and credentials
   flutter_secure_storage: 11.2.0
+
   # Schedule and display local notifications
   flutter_local_notifications: 22.3.2
-  # Cache and manage files downloaded from the internet
+
+  # Download, cache, and manage files from the internet
   flutter_cache_manager: 3.4.5
-  # Store simple key-value data locally, such as user preferences and settings
+
+  # Persist simple key-value data such as user preferences
   shared_preferences: 2.5.6
+
+  # Render SVG vector graphics in Flutter widgets
   flutter_svg: 2.3.0
 
+  # Open URLs, websites, email clients, and other external applications
+  url_launcher: 6.3.3
+
 dependency_overrides:
+  # Override the transitive protobuf dependency with a specific version
   protobuf: 6.1.0
 
 dev_dependencies:
+  # Flutter testing framework and test utilities
   flutter_test:
     sdk: flutter
+
+  # Recommended Flutter and Dart static analysis rules
   flutter_lints: 6.0.0
-  build_runner: 2.16.2
-  build: 4.0.11
-  json_serializable: 6.14.1
-  freezed: 4.0.2
-  # Lints bloc/cubit code, run via `make lint`
+
+  # Generate code using builders such as Freezed and JSON Serializable
+  build_runner: 2.17.1
+
+  # Core APIs for creating Dart code generators
+  build: 5.0.0
+
+  # Generate JSON serialization and deserialization code
+  json_serializable: 6.15.2
+
+  # Generate immutable classes, unions, and pattern matching
+  freezed: 4.0.3
+
+  # Lint and validate BLoC/Cubit code
   bloc_tools: 0.1.0-dev.25
-  # Generates the native launch screen resources from flutter_native_splash.yaml
+
+  # Generate native launch screen resources from flutter_native_splash.yaml
   flutter_native_splash: 2.4.8
-  # Generates the launcher/app icons from flutter_launcher_icons.yaml
-  flutter_launcher_icons: ^0.14.0
+
+  # Generate launcher icons for Android and iOS
+  flutter_launcher_icons: 0.14.4
 
 flutter:
+  # Enable Material Design icons and widgets
   uses-material-design: true
-  # Generates the localizations in lib/l10n from the .arb files (see l10n.yaml).
+
+  # Generate localization code from ARB files using l10n.yaml
   generate: true
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/to/resolution-aware-images
+
+  # Application image, icon, and SVG assets
   assets:
     - assets/logo/primary.png
     - assets/logo/white.png
@@ -74,10 +111,10 @@ flutter:
     - assets/images/onboard1.png
     - assets/images/onboard2.png
     - assets/images/onboard3.png
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section.
-  # example:
+
+  # Custom font families and their supported weights
   fonts:
+    # Poppins font family for application UI text
     - family: Poppins
       fonts:
         - asset: assets/fonts/poppins/Poppins-Regular.ttf
@@ -88,6 +125,8 @@ flutter:
           weight: 600
         - asset: assets/fonts/poppins/Poppins-Bold.ttf
           weight: 700
+
+    # Geist Mono font family for monospaced text
     - family: GeistMono
       fonts:
         - asset: assets/fonts/geist_mono/static/GeistMono-Regular.ttf

@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -45,13 +46,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navHome => 'Home';
 
   @override
-  String get navFeatureA => 'Feature A';
+  String get navExplore => 'Explore';
 
   @override
-  String get navFeatureB => 'Feature B';
+  String get navTeam => 'Team';
 
   @override
-  String get navAccount => 'Account';
+  String get navProfile => 'Profile';
 
   @override
   String get authSignIn => 'Sign in';
@@ -151,4 +152,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get routeErrorBackHome => 'Back to Home';
+
+  @override
+  String get exitPressAgain => 'Press back again to exit';
+
+  @override
+  String get profileSignOut => 'Sign out';
+
+  @override
+  String get profileSignOutTitle => 'Sign out?';
+
+  @override
+  String get profileSignOutMessage => 'You\'ll be signed out of your account.';
+
+  @override
+  String get profileSignOutCancel => 'Cancel';
+
+  @override
+  String get profileLoadError => 'Couldn\'t load your profile.';
 }

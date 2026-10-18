@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:oryon_mobile/shared/design_system/design_system.dart';
 
@@ -5,14 +6,12 @@ import 'package:oryon_mobile/shared/design_system/design_system.dart';
 ///
 /// Use [AppButtonVariant.primary] for the main action of a screen,
 /// [AppButtonVariant.secondary] for supporting actions,
-/// [AppButtonVariant.destructive] for irreversible actions,
-/// [AppButtonVariant.ghost] for low emphasis inline actions, and
+/// [AppButtonVariant.destructive] for irreversible actions, and
 /// [AppButtonVariant.link] for navigation-like actions.
 enum AppButtonVariant {
   primary,
   secondary,
   destructive,
-  ghost,
   link,
 }
 
@@ -35,7 +34,8 @@ class AppButton extends StatelessWidget {
     this.variant = AppButtonVariant.primary,
     this.size = AppButtonSize.md,
     this.isLoading = false,
-    this.isExpanded = false,
+    this.prefixIcon,
+    this.suffixIcon,
     super.key,
   });
 
@@ -44,11 +44,13 @@ class AppButton extends StatelessWidget {
   final AppButtonVariant variant;
   final AppButtonSize size;
   final bool isLoading;
-  final bool isExpanded;
+  final IconData? prefixIcon;
+  final IconData? suffixIcon;
 
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
+    final isIos = Theme.of(context).platform == TargetPlatform.iOS;
     final metrics = size.metrics;
 
     final style =
@@ -64,7 +66,6 @@ class AppButton extends StatelessWidget {
             backgroundColor: colors.error,
             foregroundColor: colors.onError,
           ),
-          AppButtonVariant.ghost ||
           AppButtonVariant.link => TextButton.styleFrom(
             foregroundColor: colors.primary,
           ),
@@ -76,19 +77,84 @@ class AppButton extends StatelessWidget {
           textStyle: WidgetStatePropertyAll(metrics.textStyle),
         );
 
+    final effectiveOnPressed = isLoading ? null : onPressed;
+
+    if (isIos) {
+      final foregroundColor = switch (variant) {
+        AppButtonVariant.primary => colors.onPrimary,
+        AppButtonVariant.destructive => colors.onError,
+        AppButtonVariant.secondary || AppButtonVariant.link => colors.primary,
+      };
+      final backgroundColor = switch (variant) {
+        AppButtonVariant.primary => colors.primary,
+        AppButtonVariant.destructive => colors.error,
+        AppButtonVariant.secondary || AppButtonVariant.link => null,
+      };
+
+      return CupertinoButton(
+        onPressed: effectiveOnPressed,
+        color: backgroundColor,
+        padding: EdgeInsets.symmetric(horizontal: metrics.padding),
+        borderRadius: BorderRadius.circular(AppRadius.md),
+        minimumSize: metrics.minimumSize,
+        child: isLoading
+            ? CupertinoActivityIndicator(
+                radius: metrics.indicatorSize / 2,
+                color: foregroundColor,
+              )
+            : Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (prefixIcon != null) ...[
+                    Icon(prefixIcon, color: foregroundColor),
+                    const SizedBox(width: AppSpacing.xs),
+                  ],
+                  Flexible(
+                    child: Text(
+                      label,
+                      style: TextStyle(
+                        color: foregroundColor,
+                        decoration: variant == AppButtonVariant.link
+                            ? TextDecoration.underline
+                            : null,
+                      ),
+                    ),
+                  ),
+                  if (suffixIcon != null) ...[
+                    const SizedBox(width: AppSpacing.xs),
+                    Icon(suffixIcon, color: foregroundColor),
+                  ],
+                ],
+              ),
+      );
+    }
+
     final child = isLoading
         ? SizedBox.square(
             dimension: metrics.indicatorSize,
             child: const CircularProgressIndicator(strokeWidth: 2),
           )
-        : Text(
-            label,
-            style: variant == AppButtonVariant.link
-                ? const TextStyle(decoration: TextDecoration.underline)
-                : null,
+        : Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (prefixIcon != null) ...[
+                Icon(prefixIcon),
+                const SizedBox(width: AppSpacing.xs),
+              ],
+              Flexible(
+                child: Text(
+                  label,
+                  style: variant == AppButtonVariant.link
+                      ? const TextStyle(decoration: TextDecoration.underline)
+                      : null,
+                ),
+              ),
+              if (suffixIcon != null) ...[
+                const SizedBox(width: AppSpacing.xs),
+                Icon(suffixIcon),
+              ],
+            ],
           );
-
-    final effectiveOnPressed = isLoading ? null : onPressed;
 
     final Widget button = switch (variant) {
       AppButtonVariant.secondary => OutlinedButton(
@@ -96,7 +162,7 @@ class AppButton extends StatelessWidget {
         style: style,
         child: child,
       ),
-      AppButtonVariant.ghost || AppButtonVariant.link => TextButton(
+      AppButtonVariant.link => TextButton(
         onPressed: effectiveOnPressed,
         style: style,
         child: child,
@@ -108,12 +174,7 @@ class AppButton extends StatelessWidget {
       ),
     };
 
-    if (!isExpanded) return button;
-
-    return SizedBox(
-      width: double.infinity,
-      child: button,
-    );
+    return button;
   }
 }
 

@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -45,13 +46,13 @@ class AppLocalizationsId extends AppLocalizations {
   String get navHome => 'Beranda';
 
   @override
-  String get navFeatureA => 'Fitur A';
+  String get navExplore => 'Jelajahi';
 
   @override
-  String get navFeatureB => 'Fitur B';
+  String get navTeam => 'Tim';
 
   @override
-  String get navAccount => 'Akun';
+  String get navProfile => 'Profil';
 
   @override
   String get authSignIn => 'Masuk';
@@ -151,4 +152,22 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get routeErrorBackHome => 'Kembali ke Beranda';
+
+  @override
+  String get exitPressAgain => 'Tekan kembali lagi untuk keluar';
+
+  @override
+  String get profileSignOut => 'Keluar';
+
+  @override
+  String get profileSignOutTitle => 'Keluar?';
+
+  @override
+  String get profileSignOutMessage => 'Anda akan keluar dari akun Anda.';
+
+  @override
+  String get profileSignOutCancel => 'Batal';
+
+  @override
+  String get profileLoadError => 'Tidak dapat memuat profil Anda.';
 }

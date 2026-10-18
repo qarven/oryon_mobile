@@ -79,11 +79,13 @@ class _LoginViewState extends State<LoginView> {
                 ),
               ),
               AuthErrorText(state.error),
-              AppButton(
-                label: l10n.authSignIn,
-                isExpanded: true,
-                isLoading: state.isLoading,
-                onPressed: _submit,
+              SizedBox(
+                width: double.infinity,
+                child: AppButton(
+                  label: l10n.authSignIn,
+                  isLoading: state.isLoading,
+                  onPressed: _submit,
+                ),
               ),
               const SizedBox(height: AppSpacing.md),
               Row(

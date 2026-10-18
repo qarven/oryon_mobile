@@ -57,8 +57,6 @@ make run-app
 
 ## Project Structure
 
-`lib/` is split into four areas: app-wide wiring, cross-cutting infrastructure, self-contained features, and code shared between features.
-
 ```bash
 android/                # Platform host for Android
 assets/                 # Images, icons, and fonts declared in pubspec.yaml
@@ -87,6 +85,8 @@ protobuf/               # Protobuf definitions, generated clients, and language 
 test/                   # Dart and Flutter tests
 web/                    # Platform host for Web
 ```
+
+`lib/` is split into four areas: app-wide wiring, cross-cutting infrastructure, self-contained features, and code shared between features.
 
 `lib/app` composes the features, so it may depend on `lib/features`, `lib/core`, and `lib/shared`. Everything else points inward only: `lib/core` and `lib/shared` must not import from `lib/features`, and a feature must not reach into another feature's internals.
 

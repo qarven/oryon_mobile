@@ -8,8 +8,6 @@ import 'package:oryon_mobile/app/theme/theme.dart';
 import 'package:oryon_mobile/core/config/app_config.dart';
 import 'package:oryon_mobile/shared/design_system/design_system.dart';
 
-final rootScaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
-
 class OryonApp extends StatelessWidget {
   const OryonApp({super.key});
 
@@ -26,7 +24,6 @@ class OryonApp extends StatelessWidget {
             builder: (ctx, locale) {
               return MaterialApp.router(
                 title: AppConfig.appName,
-                scaffoldMessengerKey: rootScaffoldMessengerKey,
                 debugShowCheckedModeBanner: false,
                 theme: AppTheme.lightTheme,
                 darkTheme: AppTheme.darkTheme,

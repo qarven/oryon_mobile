@@ -44,17 +44,17 @@
   "@navHome": {
     "description": "Bottom navigation label of the home tab"
   },
-  "navFeatureA": "Fitur A",
-  "@navFeatureA": {
-    "description": "Bottom navigation label of the first placeholder feature"
+  "navExplore": "Jelajahi",
+  "@navExplore": {
+    "description": "Bottom navigation label of the explore tab"
   },
-  "navFeatureB": "Fitur B",
-  "@navFeatureB": {
-    "description": "Bottom navigation label of the second placeholder feature"
+  "navTeam": "Tim",
+  "@navTeam": {
+    "description": "Bottom navigation label of the team tab"
   },
-  "navAccount": "Akun",
-  "@navAccount": {
-    "description": "Bottom navigation label of the account tab"
+  "navProfile": "Profil",
+  "@navProfile": {
+    "description": "Bottom navigation label of the profile tab"
   },
   "authSignIn": "Masuk",
   "@authSignIn": {
@@ -184,5 +184,29 @@
   "routeErrorBackHome": "Kembali ke Beranda",
   "@routeErrorBackHome": {
     "description": "Label tombol yang kembali ke rute beranda"
+  },
+  "exitPressAgain": "Tekan kembali lagi untuk keluar",
+  "@exitPressAgain": {
+    "description": "Petunjuk yang muncul setelah tekanan kembali pertama, meminta tekanan kedua sebelum aplikasi ditutup"
+  },
+  "profileSignOut": "Keluar",
+  "@profileSignOut": {
+    "description": "Label item menu profil yang keluar dari akun"
+  },
+  "profileSignOutTitle": "Keluar?",
+  "@profileSignOutTitle": {
+    "description": "Judul dialog konfirmasi sebelum keluar"
+  },
+  "profileSignOutMessage": "Anda akan keluar dari akun Anda.",
+  "@profileSignOutMessage": {
+    "description": "Isi dialog konfirmasi sebelum keluar"
+  },
+  "profileSignOutCancel": "Batal",
+  "@profileSignOutCancel": {
+    "description": "Tombol batal dialog konfirmasi keluar"
+  },
+  "profileLoadError": "Tidak dapat memuat profil Anda.",
+  "@profileLoadError": {
+    "description": "Ditampilkan saat layar profil gagal memuat pengguna"
   }
 }

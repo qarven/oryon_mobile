@@ -1,4 +1,5 @@
 export 'components/app_button.dart';
+export 'components/app_confirm_dialog.dart';
 export 'components/app_text_field.dart';
 
 export 'theme/theme.dart';

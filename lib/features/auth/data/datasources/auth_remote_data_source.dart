@@ -1,4 +1,5 @@
 import 'package:connectrpc/connect.dart';
+import 'package:oryon_mobile/core/config/app_config.dart';
 import 'package:oryon_mobile/features/auth/domain/entities/auth_failure.dart';
 import 'package:oryon_mobile/features/auth/services/auth_session.dart';
 import 'package:sdk_protobuf_gen_dart/oryon/identity/v1/authentication.connect.client.dart';
@@ -10,13 +11,39 @@ import 'package:sdk_protobuf_gen_dart/oryon/identity/v1/model.pb.dart';
 class AuthRemoteDataSource {
   const AuthRemoteDataSource(this._client, this._session);
 
+  // shortcut: the staging admin is a hardcoded credential, it never reaches a
+  // production build; delete this block once the identity service is reachable.
+  static const _mockIdentifier = 'admin@oryon.com';
+  static const _mockPassword = 'password';
+  static const _mockAccessToken = 'mock-admin-access-token';
+  static const _mockRefreshToken = 'mock-admin-refresh-token';
+
   final AuthenticationServiceClient _client;
   final AuthSession _session;
+
+  /// Returns the token of the mock admin, or null when the request belongs to
+  /// the identity service.
+  Token? _mockLogin({
+    required String identifier,
+    required String password,
+  }) {
+    if (!AppConfig.isStg) return null;
+    if (identifier != _mockIdentifier || password != _mockPassword) return null;
+
+    return Token(
+      accessToken: _mockAccessToken,
+      refreshToken: _mockRefreshToken,
+      tokenType: 'Bearer',
+    );
+  }
 
   Future<Token> login({
     required String identifier,
     required String password,
   }) async {
+    final mock = _mockLogin(identifier: identifier, password: password);
+    if (mock != null) return mock;
+
     try {
       final response = await _client.login(
         LoginRequest(identifier: identifier, password: password),

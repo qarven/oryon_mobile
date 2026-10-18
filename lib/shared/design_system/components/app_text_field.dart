@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:oryon_mobile/app/l10n/l10n.dart';
 import 'package:oryon_mobile/shared/design_system/design_system.dart';
@@ -108,8 +109,13 @@ class _AppTextFieldState extends State<AppTextField> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final metrics = widget.size.metrics;
-    final borders = widget.variant.borders(theme.inputDecorationTheme);
     final isPassword = widget.type == AppTextFieldType.password;
+
+    if (theme.platform == TargetPlatform.iOS) {
+      return _buildCupertinoField(theme, metrics, isPassword);
+    }
+
+    final borders = widget.variant.borders(theme.inputDecorationTheme);
 
     return TextFormField(
       controller: widget.controller,
@@ -151,6 +157,99 @@ class _AppTextFieldState extends State<AppTextField> {
         errorBorder: borders.errorBorder,
         focusedErrorBorder: borders.focusedErrorBorder,
       ),
+    );
+  }
+
+  Widget _buildCupertinoField(
+    ThemeData theme,
+    ({
+      double height,
+      EdgeInsets contentPadding,
+      TextStyle textStyle,
+      double iconSize,
+    })
+    metrics,
+    bool isPassword,
+  ) {
+    final effectiveErrorText = widget.errorText;
+    final obscureText = isPassword && _isObscured;
+
+    return FormField<String>(
+      initialValue: widget.controller?.text,
+      validator: widget.validator,
+      autovalidateMode: AutovalidateMode.disabled,
+      builder: (field) {
+        final errorText = effectiveErrorText ?? field.errorText;
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(
+              height: metrics.height,
+              child: CupertinoTextField(
+                controller: widget.controller,
+                enabled: widget.enabled,
+                autofocus: widget.autofocus,
+                obscureText: obscureText,
+                keyboardType: widget.type.keyboardType,
+                textCapitalization: widget.type.textCapitalization,
+                textInputAction: widget.textInputAction,
+                autofillHints: widget.type.autofillHints,
+                style: metrics.textStyle,
+                padding: metrics.contentPadding,
+                placeholder: widget.label,
+                placeholderStyle: metrics.textStyle.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
+                prefix: widget.icon == null
+                    ? null
+                    : Padding(
+                        padding: const EdgeInsets.only(left: AppSpacing.sm),
+                        child: Icon(
+                          widget.icon,
+                          size: metrics.iconSize,
+                          color: theme.colorScheme.onSurfaceVariant,
+                        ),
+                      ),
+                suffix: isPassword
+                    ? _buildVisibilityToggle(metrics.iconSize)
+                    : null,
+                decoration: BoxDecoration(
+                  color: widget.variant == AppTextFieldVariant.filled
+                      ? theme.colorScheme.surfaceContainerHighest
+                      : null,
+                  border: Border.all(
+                    color: errorText != null
+                        ? theme.colorScheme.error
+                        : theme.colorScheme.outline,
+                  ),
+                  borderRadius: BorderRadius.circular(AppRadius.lg),
+                ),
+                onChanged: (value) {
+                  widget.onChanged?.call(value);
+                  field.didChange(value);
+                },
+                onSubmitted: (value) {
+                  widget.onSubmitted?.call(value);
+                },
+              ),
+            ),
+            if (widget.helperText != null || errorText != null) ...[
+              const SizedBox(height: AppSpacing.xs),
+              Text(
+                errorText ?? widget.helperText!,
+                style:
+                    (errorText != null
+                            ? theme.textTheme.bodySmall?.copyWith(
+                                color: theme.colorScheme.error,
+                              )
+                            : theme.textTheme.bodySmall)
+                        ?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+              ),
+            ],
+          ],
+        );
+      },
     );
   }
 

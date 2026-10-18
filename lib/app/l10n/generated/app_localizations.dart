@@ -164,23 +164,23 @@ abstract class AppLocalizations {
   /// **'Home'**
   String get navHome;
 
-  /// Bottom navigation label of the first placeholder feature
+  /// Bottom navigation label of the explore tab
   ///
   /// In en, this message translates to:
-  /// **'Feature A'**
-  String get navFeatureA;
+  /// **'Explore'**
+  String get navExplore;
 
-  /// Bottom navigation label of the second placeholder feature
+  /// Bottom navigation label of the team tab
   ///
   /// In en, this message translates to:
-  /// **'Feature B'**
-  String get navFeatureB;
+  /// **'Team'**
+  String get navTeam;
 
-  /// Bottom navigation label of the account tab
+  /// Bottom navigation label of the profile tab
   ///
   /// In en, this message translates to:
-  /// **'Account'**
-  String get navAccount;
+  /// **'Profile'**
+  String get navProfile;
 
   /// Title and submit button of the login screen
   ///
@@ -367,6 +367,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Back to Home'**
   String get routeErrorBackHome;
+
+  /// Hint shown after the first back press, asking for a second one before the app closes
+  ///
+  /// In en, this message translates to:
+  /// **'Press back again to exit'**
+  String get exitPressAgain;
+
+  /// Label of the profile menu item that signs the user out
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out'**
+  String get profileSignOut;
+
+  /// Title of the confirmation dialog shown before signing out
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out?'**
+  String get profileSignOutTitle;
+
+  /// Body of the confirmation dialog shown before signing out
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ll be signed out of your account.'**
+  String get profileSignOutMessage;
+
+  /// Cancel button of the sign-out confirmation dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get profileSignOutCancel;
+
+  /// Shown when the profile screen fails to load the user
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your profile.'**
+  String get profileLoadError;
 }
 
 class _AppLocalizationsDelegate

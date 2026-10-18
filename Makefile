@@ -31,7 +31,7 @@ build-apk: ## Build release APK. Override flavor: make build-apk FLAVOR=producti
 
 .PHONY: format
 format: ## Format dart files.
-	@dart format lib/ --fix
+	@dart format lib/
 	@dart fix lib/ --apply
 
 .PHONY: lint

@@ -44,17 +44,17 @@
   "@navHome": {
     "description": "Bottom navigation label of the home tab"
   },
-  "navFeatureA": "Feature A",
-  "@navFeatureA": {
-    "description": "Bottom navigation label of the first placeholder feature"
+  "navExplore": "Explore",
+  "@navExplore": {
+    "description": "Bottom navigation label of the explore tab"
   },
-  "navFeatureB": "Feature B",
-  "@navFeatureB": {
-    "description": "Bottom navigation label of the second placeholder feature"
+  "navTeam": "Team",
+  "@navTeam": {
+    "description": "Bottom navigation label of the team tab"
   },
-  "navAccount": "Account",
-  "@navAccount": {
-    "description": "Bottom navigation label of the account tab"
+  "navProfile": "Profile",
+  "@navProfile": {
+    "description": "Bottom navigation label of the profile tab"
   },
   "authSignIn": "Sign in",
   "@authSignIn": {
@@ -184,5 +184,29 @@
   "routeErrorBackHome": "Back to Home",
   "@routeErrorBackHome": {
     "description": "Label of the button that returns to the home route"
+  },
+  "exitPressAgain": "Press back again to exit",
+  "@exitPressAgain": {
+    "description": "Hint shown after the first back press, asking for a second one before the app closes"
+  },
+  "profileSignOut": "Sign out",
+  "@profileSignOut": {
+    "description": "Label of the profile menu item that signs the user out"
+  },
+  "profileSignOutTitle": "Sign out?",
+  "@profileSignOutTitle": {
+    "description": "Title of the confirmation dialog shown before signing out"
+  },
+  "profileSignOutMessage": "You'll be signed out of your account.",
+  "@profileSignOutMessage": {
+    "description": "Body of the confirmation dialog shown before signing out"
+  },
+  "profileSignOutCancel": "Cancel",
+  "@profileSignOutCancel": {
+    "description": "Cancel button of the sign-out confirmation dialog"
+  },
+  "profileLoadError": "Couldn't load your profile.",
+  "@profileLoadError": {
+    "description": "Shown when the profile screen fails to load the user"
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:oryon_mobile/app/l10n/l10n.dart';
 import 'package:oryon_mobile/app/router/app_navigation_router.dart';
+import 'package:oryon_mobile/app/router/app_shell.dart';
 import 'package:oryon_mobile/core/logging/app_logger.dart';
 import 'package:oryon_mobile/features/auth/module.dart';
 import 'package:oryon_mobile/features/home/module.dart';
@@ -11,9 +12,28 @@ import 'package:oryon_mobile/shared/base/base_module.dart';
 import 'package:oryon_mobile/shared/design_system/design_system.dart';
 
 abstract final class AppRouter {
-  static GoRouter initialize(List<BaseModule> modules) => GoRouter(
+  static GoRouter initialize({
+    required List<BaseModule> modules,
+    required List<BaseModule> shellTabs,
+  }) => GoRouter(
     initialLocation: HomeModule.rootPath,
-    routes: [for (final module in modules) ...module.routes],
+    routes: [
+      // The tab routes are mounted inside the shell branches. Registering them
+      // top level as well would let go_router match those instead, and the tabs
+      // would never open.
+      StatefulShellRoute.indexedStack(
+        builder: (_, _, navShell) => AppShell(navigationShell: navShell),
+        // Each tab keeps its own navigation stack, so every shell tab becomes a
+        // branch of the shell route.
+        branches: [
+          for (final tab in shellTabs) StatefulShellBranch(routes: tab.routes),
+        ],
+      ),
+
+      //
+      for (final module in modules)
+        if (!shellTabs.contains(module)) ...module.routes,
+    ],
     redirect: (_, state) {
       final atOnboard =
           state.matchedLocation == OnboardingModule.walkthroughPath;
@@ -56,10 +76,12 @@ abstract final class AppRouter {
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
               const SizedBox(height: AppSpacing.xxl),
-              AppButton(
-                label: context.l10n.routeErrorBackHome,
-                isExpanded: true,
-                onPressed: () => GoRouter.of(context).goToHome(),
+              SizedBox(
+                width: double.infinity,
+                child: AppButton(
+                  label: context.l10n.routeErrorBackHome,
+                  onPressed: () => GoRouter.of(context).goToHome(),
+                ),
               ),
             ],
           ),

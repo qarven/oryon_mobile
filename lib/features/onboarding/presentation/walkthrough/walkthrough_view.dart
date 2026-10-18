@@ -58,13 +58,13 @@ class WalkthroughView extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset(slides[index].image),
-                        context.gapLG,
+                        const SizedBox.square(dimension: AppSpacing.lg),
                         Text(
                           slides[index].title,
                           textAlign: TextAlign.center,
                           style: context.textTheme.headlineMedium,
                         ),
-                        context.gapLG,
+                        const SizedBox.square(dimension: AppSpacing.lg),
                         Text(
                           slides[index].body,
                           textAlign: TextAlign.center,
@@ -76,13 +76,13 @@ class WalkthroughView extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: context.paddingXXL,
+                padding: const EdgeInsets.all(AppSpacing.xxl),
                 child: BlocBuilder<WalkthroughBloc, WalkthroughState>(
                   builder: (context, state) {
                     final isLast = state.page == WalkthroughBloc.maxPage;
                     return ProgressButton(
                       progress: (state.page + 1) / slides.length,
-                      icon: isLast ? Icons.check : Icons.chevron_right,
+                      icon: isLast ? Icons.play_arrow : Icons.chevron_right,
                       label: isLast
                           ? l10n.onboardingGetStarted
                           : l10n.onboardingNext,
